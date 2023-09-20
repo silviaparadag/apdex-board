@@ -18,15 +18,30 @@ const App = () => {
 
   const top25 = orderedList.slice(0, 25);
 
+  // const hostsOfHost = top25.map((eachHost, eachHostIndex) => {
+  //   return {
+  //     id: eachHostIndex,
+  //     hostName: eachHost.hostName,
+  //     apdex: eachHost.apdex,
+  //     numOfHost: eachHost.numOfHost,
+  //   };
+  // });
+
+  const renderHostsOfEachHost = () => {
+    return top25.map((eachHost, eachHostIndex) => (
+      <li key={eachHostIndex}>
+        Host: {eachHost.hostName} Apdex:{eachHost.apdex}
+      </li>
+    ));
+  };
+
   const htmlHostList = top25.map((host, index) => {
     return (
       <li key={index}>
         <h2>{host.apdex}</h2>
-        <ul>
-          {host.hostName.map((eachHost, eachHostIndex) => (
-            <li key={eachHostIndex}>Host: {eachHost}</li>
-          ))}
-        </ul>
+        {/* <p>{host.hostName}</p> */}
+        <p>{host.numOfHost}</p>
+        <ul>{renderHostsOfEachHost()}</ul>
       </li>
     );
   });

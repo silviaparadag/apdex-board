@@ -9,6 +9,7 @@ const callToApi = () => {
           name: eachObject.name,
           hostName: eachObject.host,
           apdex: eachObject.apdex,
+          numOfHost: eachObject.host.length,
         };
       });
       return result;
