@@ -4,12 +4,16 @@ const callToApi = () => {
   )
     .then((response) => response.json())
     .then((data) => {
-      const result = data.map((eachObject) => {
+      const result = data.map((newObject, index) => {
         return {
-          name: eachObject.name,
-          hostName: eachObject.host,
-          apdex: eachObject.apdex,
-          numOfHost: eachObject.host.length,
+          id: index,
+          name: newObject.name,
+          hosts: newObject.host,
+          version: newObject.version,
+          // `hosts` is an array
+          // hostOfHost: [newObject.host],
+          apdex: newObject.apdex,
+          numOfHost: newObject.host.length,
         };
       });
       return result;

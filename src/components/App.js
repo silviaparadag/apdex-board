@@ -6,51 +6,48 @@ import Footer from './Footer';
 import callToApi from '../services/api';
 
 const App = () => {
-  const [hostList, setHostList] = useState([{}]);
+  const [hostDataList, setHostDataList] = useState([{}]);
 
   useEffect(() => {
     callToApi().then((data) => {
-      setHostList(data);
+      setHostDataList(data);
     });
   });
 
-  const orderedList = hostList.sort((a, b) => b.apdex - a.apdex);
+  // const getNewOrderedHostList = () => {
+  //   const newHostList = [];
+  //   hostDataList.map((data) => {
+  //     return data.hosts.map((eachHost) => {
+  //       if (!newHostList.includes(eachHost)) {
+  //         newHostList.push(eachHost);
+  //       }
+  //       return newHostList;
+  //     });
+  //   });
+  // };
 
-  const top25 = orderedList.slice(0, 25);
+  const top25 = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 25);
 
-  // const hostsOfHost = top25.map((eachHost, eachHostIndex) => {
-  //   return {
-  //     id: eachHostIndex,
-  //     hostName: eachHost.hostName,
-  //     apdex: eachHost.apdex,
-  //     numOfHost: eachHost.numOfHost,
-  //   };
-  // });
-
-  const renderHostsOfEachHost = () => {
-    return top25.map((eachHost, eachHostIndex) => (
-      <li key={eachHostIndex}>
-        Host: {eachHost.hostName} Apdex:{eachHost.apdex}
-      </li>
-    ));
-  };
-
-  const htmlHostList = top25.map((host, index) => {
-    return (
-      <li key={index}>
-        <h2>{host.apdex}</h2>
-        {/* <p>{host.hostName}</p> */}
-        <p>{host.numOfHost}</p>
-        <ul>{renderHostsOfEachHost()}</ul>
-      </li>
-    );
-  });
+  const htmlhostDataList = top25.map((object, hostIndex) => (
+    <li key={top25.id}>
+      <h2 className="hostList__apdex">{object.apdex}</h2>
+      <p className="hostList__app">{object.name}</p>
+      <ul>
+        <li className="hostList__hostName" key={hostIndex}>
+          Host: {object.hosts}
+        </li>
+      </ul>
+    </li>
+  ));
 
   return (
     <div className="App">
       <Header />
       <main className="main">
-        <ul>{htmlHostList}</ul>
+        <div>
+          <h3 className="main__title">Listado grupo por Host</h3>
+        </div>
+        <ul>{htmlhostDataList}</ul>
       </main>
       <Main />
       <Footer />

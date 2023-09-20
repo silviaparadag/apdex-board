@@ -3,31 +3,25 @@
 .main {
     padding: 10px;
     height: 80%;
+
+    &__title {
+        font-family: $font-main;
+        font-weight: 600;
+    }
 }
 
-.exercise1 {
-    background-color: bisque;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
+.hostList {
+    color: rgb(37, 3, 139);
 
-.exercise2 {
-    background-color: lightblue;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
+    &__app {
+        text-transform: uppercase;
+    }
 
-.example3 {
-    background-color: rgba(32, 178, 171, 0.492);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    &__hostName {
+        line-height: 1.5rem;
+    }
+
+    &__apdex {
+        color: red
+    }
 }
