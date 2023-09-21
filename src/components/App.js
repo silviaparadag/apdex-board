@@ -41,14 +41,15 @@ const handleToggleCheckbox = () => {
   //   });
   // };
 
-  const top25 = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 2);
+  const top25 = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 25);
+  console.log(top25);
 
   const htmlhostDataList = top25.map((object, hostIndex) => (
-    <li key={top25.id}>
-      <h2 className="hostList__apdex">{object.apdex}</h2>
-      <p className="hostList__app">{object.name}</p>
+    <li key={top25.id} className="hostList__li">
+      <h2 className="hostList__li--apdex">{object.apdex}</h2>
+      <p className="hostList__li--app">{object.name}</p>
       <ul>
-        <li className="hostList__hostName" key={hostIndex}>
+        <li className="hostList__li--hostName" key={hostIndex}>
           Host: {object.hosts}
         </li>
       </ul>
@@ -61,9 +62,9 @@ const handleToggleCheckbox = () => {
       <Main toggleLayout={toggleLayout} />
       <main className="main">
         <div>
-          <h3 className="main__title">Listado grupo por Host</h3>
+          <h3 className="main__title">Obtener datos</h3>
         </div>
-        <ul>{htmlhostDataList}</ul>
+        <ul className="hostList">{htmlhostDataList}</ul>
       </main>
     </div>
   );
