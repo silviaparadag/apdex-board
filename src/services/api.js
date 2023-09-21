@@ -1,3 +1,5 @@
+import data from '../data/host-app-data.json';
+
 const callToApi = () => {
   return fetch(
     'https://silviaparadag.github.io/api-sp/apdex-board/host-app-data.json'
@@ -20,4 +22,23 @@ const callToApi = () => {
     });
 };
 
-export default callToApi;
+const getDataFromJson = () => {
+  const result = data.map((newObject, index) => {
+    return {
+      id: index,
+      name: newObject.name,
+      hosts: newObject.host,
+      version: newObject.version,
+      apdex: newObject.apdex,
+      numOfHosts: newObject.host.length,
+    };
+  });
+  return result;
+};
+
+const objToExport = {
+  callToApi: callToApi,
+  getDataFromJson: getDataFromJson,
+};
+
+export default objToExport;
