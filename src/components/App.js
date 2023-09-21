@@ -2,43 +2,69 @@ import '../styles/App.scss';
 import { useEffect, useState } from 'react';
 import Header from './Header';
 import Main from './Main';
-import Footer from './Footer';
 import callToApi from '../services/api';
 
 const App = () => {
-  const [hostList, setHostList] = useState([{}]);
+  const [hostDataList, setHostDataList] = useState([{}]);
+  const [toggleLayout, setToggleLayout] = useState('mainTablesList');
 
   useEffect(() => {
     callToApi().then((data) => {
-      setHostList(data);
+      setHostDataList(data);
     });
   });
 
-  const orderedList = hostList.sort((a, b) => b.apdex - a.apdex);
+  /*
+const handleToggleCheckbox = () => {
+    if (toggleLayout === 'mainTablesList') {
+      setToggleLayout('mainTablesGrid');
+    } else if (toggleLayout === 'mainTablesGrid') {
+      setToggleLayout('mainTablesList');
+    }
+  };
+ */
 
-  const top25 = orderedList.slice(0, 25);
+  const handleToggleCheckbox = () => {
+    const newLayout =
+      toggleLayout === 'mainTablesList' ? 'mainTablesGrid' : 'mainTablesList';
+    setToggleLayout(newLayout);
+  };
+  // const getNewOrderedHostList = () => {
+  //   const newHostList = [];
+  //   hostDataList.map((data) => {
+  //     return data.hosts.map((eachHost) => {
+  //       if (!newHostList.includes(eachHost)) {
+  //         newHostList.push(eachHost);
+  //       }
+  //       return newHostList;
+  //     });
+  //   });
+  // };
 
-  const htmlHostList = top25.map((host, index) => {
-    return (
-      <li key={index}>
-        <h2>{host.apdex}</h2>
-        <ul>
-          {host.hostName.map((eachHost, eachHostIndex) => (
-            <li key={eachHostIndex}>Host: {eachHost}</li>
-          ))}
-        </ul>
-      </li>
-    );
-  });
+  const top25 = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 2);
+
+  const htmlhostDataList = top25.map((object, hostIndex) => (
+    <li key={top25.id}>
+      <h2 className="hostList__apdex">{object.apdex}</h2>
+      <p className="hostList__app">{object.name}</p>
+      <ul>
+        <li className="hostList__hostName" key={hostIndex}>
+          Host: {object.hosts}
+        </li>
+      </ul>
+    </li>
+  ));
 
   return (
     <div className="App">
-      <Header />
+      <Header handleToggleCheckbox={handleToggleCheckbox} />
+      <Main toggleLayout={toggleLayout} />
       <main className="main">
-        <ul>{htmlHostList}</ul>
+        <div>
+          <h3 className="main__title">Listado grupo por Host</h3>
+        </div>
+        <ul>{htmlhostDataList}</ul>
       </main>
-      <Main />
-      <Footer />
     </div>
   );
 };

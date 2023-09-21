@@ -1,33 +1,140 @@
 @import '../core/variables.scss';
 
 .main {
-    padding: 10px;
+    background-color: white;
+    font-family: $font-main3;
     height: 80%;
+
+    &__title {
+        font-weight: 600;
+    }
 }
 
-.exercise1 {
-    background-color: bisque;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+.mainTablesGrid {
+    flex-wrap: wrap;
+
+    &__container {
+        width: 375px;
+    }
 }
 
-.exercise2 {
-    background-color: lightblue;
-    padding: 10px;
-    display: flex;
+.mainTablesList {
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
 }
 
-.example3 {
-    background-color: rgba(32, 178, 171, 0.492);
-    padding: 10px;
+.mainTables {
+    font-family: $font-main3;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+
+    gap: 30px;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding-bottom: 30px;
+        // width: 375px;
+
+
+
+        &--title {
+
+            font-weight: 600;
+            padding: 30px 0 0 30px;
+
+        }
+
+        &--rows {
+            display: flex;
+        }
+    }
+}
+
+/* */
+
+.spanColumnLeft,
+.spanColumnRight {
+    color: #4A4A4A;
+
+}
+
+.spanColumnLeft {
+    text-align: left;
+    padding: 23px 10px 0 30px;
+
+}
+
+.spanColumnRight {
+    text-align: left;
+    padding: 23px 30px 0 10px;
+
+}
+
+.columnLeft,
+.columnRight {
+    color: #4A4A4A;
+    height: 55px;
+
+}
+
+.columnLeft {
+    text-align: center;
+    padding: 23px 10px 0 30px;
+
+}
+
+.columnRight {
+    text-align: left;
+    padding: 23px 30px 0 10px;
+
+}
+
+.hostTable {
+    //width: 375px;
+    // &__header {
+    //     padding: 30px 0 23px 30px;
+    //     display: inline-block;
+    //     font-weight: 600;
+    // }
+
+    &__row {
+        font-family: $font-main3;
+        color: #4A4A4A;
+
+        &--cellLeft {
+            padding: 23px 10px 0 30px;
+            display: inline-block;
+            text-align: center;
+            line-height: 19px;
+        }
+
+        &--cellRight {
+            padding: 23px 30px 0 10px;
+            text-align: left;
+        }
+
+    }
+
+    &__rowLast {
+        padding-bottom: 30px;
+        font-family: $font-main3;
+        color: #4A4A4A;
+    }
+
+}
+
+.hostList {
+    color: rgb(37, 3, 139);
+
+    &__app {
+        text-transform: uppercase;
+    }
+
+    &__hostName {
+        line-height: 1.5rem;
+    }
+
+    &__apdex {
+        color: red
+    }
 }
