@@ -13,7 +13,7 @@ const callToApi = () => {
           // `hosts` is an array
           // hostOfHost: [newObject.host],
           apdex: newObject.apdex,
-          numOfHost: newObject.host.length,
+          numOfHosts: newObject.host.length,
         };
       });
       return result;
