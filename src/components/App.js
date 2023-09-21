@@ -2,11 +2,11 @@ import '../styles/App.scss';
 import { useEffect, useState } from 'react';
 import Header from './Header';
 import Main from './Main';
-import Footer from './Footer';
 import callToApi from '../services/api';
 
 const App = () => {
   const [hostDataList, setHostDataList] = useState([{}]);
+  const [toggleLayout, setToggleLayout] = useState('mainTablesList');
 
   useEffect(() => {
     callToApi().then((data) => {
@@ -14,6 +14,21 @@ const App = () => {
     });
   });
 
+  /*
+const handleToggleCheckbox = () => {
+    if (toggleLayout === 'mainTablesList') {
+      setToggleLayout('mainTablesGrid');
+    } else if (toggleLayout === 'mainTablesGrid') {
+      setToggleLayout('mainTablesList');
+    }
+  };
+ */
+
+  const handleToggleCheckbox = () => {
+    const newLayout =
+      toggleLayout === 'mainTablesList' ? 'mainTablesGrid' : 'mainTablesList';
+    setToggleLayout(newLayout);
+  };
   // const getNewOrderedHostList = () => {
   //   const newHostList = [];
   //   hostDataList.map((data) => {
@@ -42,8 +57,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header />
-      <Main />
+      <Header handleToggleCheckbox={handleToggleCheckbox} />
+      <Main toggleLayout={toggleLayout} />
       <main className="main">
         <div>
           <h3 className="main__title">Listado grupo por Host</h3>

@@ -10,22 +10,83 @@
     }
 }
 
+.mainTablesGrid {
+    flex-wrap: wrap;
+
+    &__container {
+        width: 375px;
+    }
+}
+
+.mainTablesList {
+    flex-direction: column;
+}
+
 .mainTables {
     font-family: $font-main3;
     display: flex;
-    flex-direction: column;
+
     gap: 30px;
 
     &__container {
+        display: flex;
+        flex-direction: column;
         background-color: white;
         padding-bottom: 30px;
-        //width: 375px;
+        // width: 375px;
+
+
 
         &--title {
+
             font-weight: 600;
             padding: 30px 0 0 30px;
+
+        }
+
+        &--rows {
+            display: flex;
         }
     }
+}
+
+/* */
+
+.spanColumnLeft,
+.spanColumnRight {
+    color: #4A4A4A;
+
+}
+
+.spanColumnLeft {
+    text-align: left;
+    padding: 23px 10px 0 30px;
+
+}
+
+.spanColumnRight {
+    text-align: left;
+    padding: 23px 30px 0 10px;
+
+}
+
+.columnLeft,
+.columnRight {
+    color: #4A4A4A;
+    height: 55px;
+
+}
+
+.columnLeft {
+    text-align: center;
+    padding: 23px 10px 0 30px;
+
+}
+
+.columnRight {
+    text-align: left;
+    padding: 23px 30px 0 10px;
+
 }
 
 .hostTable {

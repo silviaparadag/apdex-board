@@ -1,6 +1,13 @@
 import '../styles/layout/Header.scss';
 
-const Header = () => {
+const Header = ({ handleToggleCheckbox }) => {
+  // const handleSubmit = (ev) => {
+  //   ev.preventDefault();
+  // };
+
+  const handleCheck = () => {
+    handleToggleCheckbox();
+  };
   return (
     <header className="header">
       <h1 className="header__title">Apps by Host</h1>
@@ -13,6 +20,7 @@ const Header = () => {
           type="checkbox"
           id="checkbox"
           value="Check"
+          onClick={handleCheck}
         />
         <label className="header__form--label" htmlFor="checkbox">
           Show as a list

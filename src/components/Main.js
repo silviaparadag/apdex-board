@@ -1,84 +1,79 @@
 import '../styles/layout/Main.scss';
 
-const Main = () => {
+const Main = ({ toggleLayout }) => {
   return (
-    <main className="mainTables">
-      <div className="mainTables__container">
-        <p className="mainTables__container--title">92116865-5462.conor.com</p>
-        <table className="hostTable">
-          {/* <thead scope="row" className="hostTable__header">
-            <th>92116865-5462.conor.com</th>
-          </thead> */}
-          <tr className="hostTable__row">
-            <td className="hostTable__row--cellLeft">99</td>
-            <td className="hostTable__row--cellRight">
+    <main className={`mainTables ${toggleLayout}`}>
+      <div className={`mainTables__container ${toggleLayout}__container`}>
+        <p className="mainTables__container--title">
+          92116865-5462.conor.comSP
+        </p>
+        <div className="mainTables__container--rows">
+          <ul>
+            <li className="columnLeft">100</li>
+            <li className="columnLeft">99</li>
+            <li className="columnLeft">98</li>
+            <li className="columnLeft">98</li>
+            <li className="columnLeft">97</li>
+          </ul>
+          <ul>
+            <li className="columnRight">
               Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </td>
-          </tr>
-          <tr className="hostTable__row">
-            <td className="hostTable__row--cellLeft">99</td>
-            <td className="hostTable__row--cellRight">
+            </li>
+            <li className="columnRight">
+              Practical Metal Computer - Auer LLC, Inc
+            </li>
+            <li className="columnRight">
               Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </td>
-          </tr>
-          <tr className="hostTable__row">
-            <td className="hostTable__row--cellLeft">99</td>
-            <td className="hostTable__row--cellRight">
-              Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </td>
-          </tr>
-          <tr className="hostTable__row">
-            <td className="hostTable__row--cellLeft">99</td>
-            <td className="hostTable__row--cellRight">
-              Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </td>
-          </tr>
-          <tr className="hostTable__row">
-            <td className="hostTable__row--cellLeft">99</td>
-            <td className="hostTable__row--cellRight">
-              Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </td>
-          </tr>
-        </table>
+            </li>
+            <li className="columnRight">
+              Practical Metal Computer - Auer LLC, Inc
+            </li>
+            <li className="columnRight">
+              Practical Metal Computer - Auer LLC, Inc
+            </li>
+          </ul>
+        </div>
       </div>
       <div className="mainTables__container">
-        <p className="mainTables__container--title">92116865-5462.conor.com</p>
-        <table className="hostTable">
-          {/* <thead scope="row" className="hostTable__header">
-            <th>92116865-5462.conor.com</th>
-          </thead> */}
-          <tr className="hostTable__row">
-            <td className="hostTable__row--cellLeft">99</td>
-            <td className="hostTable__row--cellRight">
-              Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </td>
-          </tr>
-          <tr className="hostTable__row">
-            <td className="hostTable__row--cellLeft">99</td>
-            <td className="hostTable__row--cellRight">
-              Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </td>
-          </tr>
-          <tr className="hostTable__row">
-            <td className="hostTable__row--cellLeft">99</td>
-            <td className="hostTable__row--cellRight">
-              Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </td>
-          </tr>
-          <tr className="hostTable__row">
-            <td className="hostTable__row--cellLeft">99</td>
-            <td className="hostTable__row--cellRight">
-              Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </td>
-          </tr>
-          <tr className="hostTable__row">
-            <td className="hostTable__row--cellLeft">99</td>
-            <td className="hostTable__row--cellRight">
-              Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </td>
-          </tr>
-        </table>
+        <p className="mainTables__container--title">
+          92116865-5462.conor.com NO VALE
+        </p>
+        <div className="mainTables__container--rows">
+          <ul>
+            <li className="spanColumnLeft">
+              100
+              <span className="spanColumnRight">
+                Awesome Wooden Sausages - Schaefer - Hegmann, Inc
+              </span>
+            </li>
+            <li className="spanColumnLeft">
+              99
+              <span className="spanColumnRight">
+                Practical Metal Computer - Auer LLC, Inc
+              </span>
+            </li>
+            <li className="spanColumnLeft">
+              98
+              <span className="spanColumnRight">
+                Awesome Wooden Sausages - Schaefer - Hegmann, Inc
+              </span>
+            </li>
+            <li className="spanColumnLeft">
+              98
+              <span className="spanColumnRight">
+                Awesome Wooden Sausages - Schaefer - Hegmann, Inc
+              </span>
+            </li>
+            <li className="spanColumnLeft">
+              97
+              <span className="spanColumnRight">
+                Practical Metal Computer - Auer LLC, Inc
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
+
       <div className="mainTables__container">
         <p className="mainTables__container--title">92116865-5462.conor.com</p>
         <table className="hostTable">
