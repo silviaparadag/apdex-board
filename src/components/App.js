@@ -26,7 +26,7 @@ const App = () => {
   //   });
   // };
 
-  const top25 = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 25);
+  const top25 = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 2);
 
   const htmlhostDataList = top25.map((object, hostIndex) => (
     <li key={top25.id}>
@@ -43,14 +43,13 @@ const App = () => {
   return (
     <div className="App">
       <Header />
+      <Main />
       <main className="main">
         <div>
           <h3 className="main__title">Listado grupo por Host</h3>
         </div>
         <ul>{htmlhostDataList}</ul>
       </main>
-      <Main />
-      <Footer />
     </div>
   );
 };

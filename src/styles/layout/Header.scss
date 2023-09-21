@@ -3,22 +3,30 @@
 .header {
     padding: 10px 10px 10px;
     text-align: center;
-    border-bottom: dotted 2px lightgray;
     margin-bottom: 20px;
-    font-family: $font-main;
+    font-family: $font-main3;
+    padding-bottom: 30px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 30px;
 
     &__title {
-        color: gray;
-        font-size: 16px;
-        text-transform: uppercase;
+        color: #000000;
+        font-size: 35px;
         font-weight: bold;
-        padding: 5px;
+        line-height: 22px;
     }
 
     &__subtitle {
-        color: lightcoral;
-        font-size: 16px;
-        padding: 5px;
+        color: #000000;
+        font-size: 18px;
+        line-height: 22px;
     }
 
+    &__form {
+        &--input {
+            margin: 10px;
+        }
+    }
 }
