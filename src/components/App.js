@@ -6,8 +6,8 @@ import Main from './Main';
 import data from '../js/hosts';
 
 const App = () => {
-  const [hostDataList, setHostDataList] = useState([{}]);
-  const [dataList, setDataList] = useState([{}]);
+  const [hostDataList, setHostDataList] = useState([]);
+  const [dataList, setDataList] = useState([]);
   const [toggleLayout, setToggleLayout] = useState('mainTablesList');
 
   // useEffect(() => {
@@ -30,32 +30,64 @@ const App = () => {
   };
 
   const top5Hosts = dataList.slice(0, 5);
-  console.log(top5Hosts);
-  const top25 = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 25);
-  console.log(top25);
+  //console.log(top5Hosts);
+  const top25Apps = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 25);
+  //console.log(top25Apps);
 
-  const htmlHost = top5Hosts.map((eachHost) => (
-    <h3 className="main__title">{eachHost}</h3>
-  ));
+  /* esto lo usaba si lo traía desde JS
+   */
+  const prueba = data.renderListado();
 
-  const htmlhostDataList = top25.map((object, hostIndex) => (
+  /*
+   */
+
+  // Por ahora lo estoy haciendo con datos troceados L32 y L34. Luego habría que hacerlo con TODOOOOOS los datos del JSON y donde haya más de 5, no mostrarlos!
+
+  let top5byHost = [];
+
+  const findListOfTop5byHost = () => {
+    return top5Hosts.map((eachHost) => {
+      const appsByHost = top25Apps.filter((eachApp) =>
+        eachApp.hosts.includes(eachHost)
+      );
+      const list = appsByHost.map(
+        (eachApp) => `${eachApp.apdex} -  ${eachApp.name}`
+      );
+      top5byHost[eachHost] = list;
+      return top5byHost;
+    });
+  };
+
+  console.log(top5byHost);
+  findListOfTop5byHost();
+
+  const renderHtmlHost = () => {
+    return top5Hosts.map((eachHost) => {
+      console.log(eachHost);
+      return (
+        <div>
+          <h3 className="main__title">{eachHost}</h3>
+        </div>
+      );
+    });
+  };
+
+  /* */
+
+  /* HTML PREVIO*/
+  const htmlhostDataList = top25Apps.map((object, hostIndex) => (
     <div className="mainTables__container--rows">
       <ul>
-        <li className="columnLeft">{object.apdex}</li>
+        <li key={hostIndex} className="columnLeft">
+          {object.apdex}
+        </li>
       </ul>
       <ul>
-        <li className="columnRight">{object.name}</li>
+        <li key={object.name} className="columnRight">
+          {object.name}
+        </li>
       </ul>
     </div>
-
-    // <li key={top25.id} className="hostList__li">
-    //   <h2 className="hostList__li--apdex">{object.apdex}</h2>
-    //   <ul>
-    //     <li className="hostList__li--hostName" key={hostIndex}>
-    //       Host: {object.name}
-    //     </li>
-    //   </ul>
-    // </li>
   ));
 
   return (
@@ -63,9 +95,10 @@ const App = () => {
       <Header handleToggleCheckbox={handleToggleCheckbox} />
       <Main toggleLayout={toggleLayout} />
       <main className="main">
-        <div>{htmlHost}</div>
-        <ul className="hostList">{htmlhostDataList}</ul>
+        {renderHtmlHost()}
+        {prueba}
       </main>
+      {htmlhostDataList}
     </div>
   );
 };

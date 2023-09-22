@@ -34,7 +34,7 @@ const Main = ({ toggleLayout }) => {
           </ul>
         </div>
       </div>
-      <div className="mainTables__container">
+      {/* <div className="mainTables__container">
         <p className="mainTables__container--title">
           92116865-5462.conor.com NO VALE
         </p>
@@ -72,7 +72,7 @@ const Main = ({ toggleLayout }) => {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
     </main>
   );
 };
