@@ -39,7 +39,7 @@ const top25Apps = getDataFromJson
   console.log(top25Apps);
   */
 
-const top5byHost = {};
+const top5byHost = [];
 
 const listOfTop5byHost = newHostsObject.forEach((eachHost) => {
   const appsByHost = top25Apps.filter((eachApp) =>
@@ -53,21 +53,21 @@ const listOfTop5byHost = newHostsObject.forEach((eachHost) => {
   top5byHost[eachHost] = list;
 });
 
-const renderListado = () => {
-  let html = `<h3 className="main__title">Cabecera</h3>`;
+console.log(top5byHost);
+
+const renderHostList = () => {
+  let html = '';
   for (const eachHost in top5byHost) {
-    html += <h3 className="main__title">{eachHost}</h3>;
+    html += `${eachHost}`;
     console.log(`Este es la lista desde JS para ${eachHost}`);
-    top5byHost[eachHost].forEach((object) => console.log(object));
   }
   return html;
 };
-
 const objToExport = {
   getDataFromJson: getDataFromJson,
   newHostsObject: newHostsObject,
   listOfTop5byHost: listOfTop5byHost,
-  renderListado: renderListado,
+  renderHostList: renderHostList,
 };
 
 export default objToExport;

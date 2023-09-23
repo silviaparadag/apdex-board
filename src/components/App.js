@@ -36,8 +36,8 @@ const App = () => {
 
   /* esto lo usaba si lo traía desde JS
    */
-  const prueba = data.renderListado();
-
+  const prueba = data.renderHostList();
+  // const prueba2 = data.renderHostListApps();
   /*
    */
 
@@ -96,7 +96,16 @@ const App = () => {
       <Main toggleLayout={toggleLayout} />
       <main className="main">
         {renderHtmlHost()}
-        {prueba}
+        <ul>
+          <li key={prueba} className="main__title">
+            {prueba}
+          </li>
+        </ul>
+        {/* <ul>
+          <li key={prueba2} className="main__title">
+            {prueba2}
+          </li>
+        </ul> */}
       </main>
       {htmlhostDataList}
     </div>
