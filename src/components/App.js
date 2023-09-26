@@ -38,12 +38,12 @@ const App = () => {
    */
   const prueba = data.renderHostList();
   // const prueba2 = data.renderHostListApps();
-  /*
+  /*  const pruebaDos = data.renderApdexApps();
    */
 
   // Por ahora lo estoy haciendo con datos troceados L32 y L34. Luego habría que hacerlo con TODOOOOOS los datos del JSON y donde haya más de 5, no mostrarlos!
 
-  let top5byHost = [];
+  const top5byHost = [];
 
   const findListOfTop5byHost = () => {
     return top5Hosts.map((eachHost) => {
@@ -53,13 +53,16 @@ const App = () => {
       const list = appsByHost.map(
         (eachApp) => `${eachApp.apdex} -  ${eachApp.name}`
       );
+      console.log(list);
       top5byHost[eachHost] = list;
       return top5byHost;
     });
   };
 
-  console.log(top5byHost);
-  findListOfTop5byHost();
+  console.log(findListOfTop5byHost());
+  // findListOfTop5byHost();
+
+  //como si la la respuesta, lo que necesito fuese la propiedad, la clave, no el valor.
 
   const renderHtmlHost = () => {
     return top5Hosts.map((eachHost) => {
@@ -71,8 +74,19 @@ const App = () => {
       );
     });
   };
+  /*
+  const renderHtmlApps = () => {
+    return data.listOfTop5byHost.map((eachApp) => {
+      console.log(eachApp);
+      return (
+        <div>
+          <h3 className="main__title">{eachApp}</h3>
+        </div>
+      );
+    });
+  };
 
-  /* */
+ */
 
   /* HTML PREVIO*/
   const htmlhostDataList = top25Apps.map((object, hostIndex) => (
@@ -96,6 +110,8 @@ const App = () => {
       <Main toggleLayout={toggleLayout} />
       <main className="main">
         {renderHtmlHost()}
+
+        {/* {renderHtmlApps()} */}
         <ul>
           <li key={prueba} className="main__title">
             {prueba}

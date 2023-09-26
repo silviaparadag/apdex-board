@@ -49,11 +49,12 @@ const listOfTop5byHost = newHostsObject.forEach((eachHost) => {
   const list = appsByHost
     .map((eachApp) => `${eachApp.apdex} -  ${eachApp.name}`)
     .slice(0, 5);
+  console.log(list);
 
   top5byHost[eachHost] = list;
 });
 
-console.log(top5byHost);
+console.log(listOfTop5byHost);
 
 const renderHostList = () => {
   let html = '';
