@@ -10,11 +10,12 @@ const App = () => {
   const [dataList, setDataList] = useState([]);
   const [toggleLayout, setToggleLayout] = useState('mainTablesList');
 
-  // useEffect(() => {
-  //   callToApi().then((data) => {
-  //     setHostDataList(data);
-  //   });
-  // });
+  /*  
+  useEffect(() => {
+    callToApi().then((data) => {
+      setHostDataList(data);
+    });
+  }); */
 
   useEffect(() => {
     setHostDataList(data.getDataFromJson);
@@ -37,15 +38,13 @@ const App = () => {
   /* esto lo usaba si lo traía desde JS
    */
   const prueba = data.renderHostList();
-  // const prueba2 = data.renderHostListApps();
-  /*  const pruebaDos = data.renderApdexApps();
-   */
+  /* */
 
   // Por ahora lo estoy haciendo con datos troceados L32 y L34. Luego habría que hacerlo con TODOOOOOS los datos del JSON y donde haya más de 5, no mostrarlos!
 
-  const top5byHost = [];
+  let top5byHost = [];
 
-  const findListOfTop5byHost = () => {
+  /* const findListOfTop5byHost = () => {
     return top5Hosts.map((eachHost) => {
       const appsByHost = top25Apps.filter((eachApp) =>
         eachApp.hosts.includes(eachHost)
@@ -58,8 +57,19 @@ const App = () => {
       return top5byHost;
     });
   };
+  */
+  const findListOfTop5byHost = top5Hosts.map((eachHost) => {
+    const appsByHost = top25Apps.filter((eachApp) =>
+      eachApp.hosts.includes(eachHost)
+    );
+    const list = appsByHost.map(
+      (eachApp) => `${eachApp.apdex} -  ${eachApp.name}`
+    );
+    console.log(list);
+    return list;
+  });
 
-  console.log(findListOfTop5byHost());
+  console.log(findListOfTop5byHost);
   // findListOfTop5byHost();
 
   //como si la la respuesta, lo que necesito fuese la propiedad, la clave, no el valor.
@@ -115,6 +125,7 @@ const App = () => {
         <ul>
           <li key={prueba} className="main__title">
             {prueba}
+            {findListOfTop5byHost}
           </li>
         </ul>
         {/* <ul>
