@@ -30,52 +30,43 @@ const App = () => {
     setToggleLayout(newLayout);
   };
 
-  const top5Hosts = dataList.slice(0, 5);
-  //console.log(top5Hosts);
-  const top25Apps = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 25);
+  const top4Hosts = dataList.slice(0, 4);
+  //console.log(top4Hosts);
+  const top25Apps = hostDataList.slice(0, 25);
   //console.log(top25Apps);
 
   /* esto lo usaba si lo traía desde JS
    */
-  const prueba = data.renderHostList();
+  const eachTop4Hosts = data.renderHostList();
   /* */
 
   // Por ahora lo estoy haciendo con datos troceados L32 y L34. Luego habría que hacerlo con TODOOOOOS los datos del JSON y donde haya más de 5, no mostrarlos!
 
-  let top5byHost = [];
+  /*   
+   `<li key={eachAppIndex} className="columnLeft">${eachApp.apdex} -  ${eachApp.name}</li> `
+   <li key={eachAppIndex} className="columnLeft"></li>
+   */
 
-  /* const findListOfTop5byHost = () => {
-    return top5Hosts.map((eachHost) => {
-      const appsByHost = top25Apps.filter((eachApp) =>
-        eachApp.hosts.includes(eachHost)
-      );
-      const list = appsByHost.map(
-        (eachApp) => `${eachApp.apdex} -  ${eachApp.name}`
-      );
-      console.log(list);
-      top5byHost[eachHost] = list;
-      return top5byHost;
-    });
-  };
-  */
-  const findListOfTop5byHost = top5Hosts.map((eachHost) => {
+  const findListOfTop5byHost = top4Hosts.map((eachHost) => {
     const appsByHost = top25Apps.filter((eachApp) =>
       eachApp.hosts.includes(eachHost)
     );
-    const list = appsByHost.map(
-      (eachApp) => `${eachApp.apdex} -  ${eachApp.name}`
-    );
+    console.log(appsByHost);
+    const list = appsByHost
+      .map((eachApp) => `${eachApp.apdex} -  ${eachApp.name} `)
+      .slice(0, 5);
     console.log(list);
     return list;
   });
+  // ojo, revisar slice pq en el primer host, solo pinta 4 apps
 
-  console.log(findListOfTop5byHost);
+  console.log(`Esta es la lista con React:  ${findListOfTop5byHost}`);
   // findListOfTop5byHost();
 
   //como si la la respuesta, lo que necesito fuese la propiedad, la clave, no el valor.
 
   const renderHtmlHost = () => {
-    return top5Hosts.map((eachHost) => {
+    return top4Hosts.map((eachHost) => {
       console.log(eachHost);
       return (
         <div>
@@ -84,7 +75,10 @@ const App = () => {
       );
     });
   };
-  /*
+  /* */
+
+  /* HTML PREVIO  
+  
   const renderHtmlApps = () => {
     return data.listOfTop5byHost.map((eachApp) => {
       console.log(eachApp);
@@ -96,9 +90,6 @@ const App = () => {
     });
   };
 
- */
-
-  /* HTML PREVIO*/
   const htmlhostDataList = top25Apps.map((object, hostIndex) => (
     <div className="mainTables__container--rows">
       <ul>
@@ -112,29 +103,27 @@ const App = () => {
         </li>
       </ul>
     </div>
-  ));
+  ));*/
 
   return (
     <div className="App">
       <Header handleToggleCheckbox={handleToggleCheckbox} />
-      <Main toggleLayout={toggleLayout} />
-      <main className="main">
-        {renderHtmlHost()}
+      <Main
+        toggleLayout={toggleLayout}
+        findListOfTop5byHost={findListOfTop5byHost}
+        eachTop4Hosts={eachTop4Hosts}
+        top4Hosts={top4Hosts}
+      />
+      {/* <main className="main">
+        {renderHtmlHost()} 
 
-        {/* {renderHtmlApps()} */}
         <ul>
-          <li key={prueba} className="main__title">
-            {prueba}
-            {findListOfTop5byHost}
+          <li key={eachTop4Hosts} className="main__title">
+            {eachTop4Hosts}
           </li>
         </ul>
-        {/* <ul>
-          <li key={prueba2} className="main__title">
-            {prueba2}
-          </li>
-        </ul> */}
       </main>
-      {htmlhostDataList}
+      {/* {htmlhostDataList} */}
     </div>
   );
 };
