@@ -25,8 +25,8 @@ const Main = ({
       <div className={`mainTables__container ${toggleLayout}__container`}>
         <p className="mainTables__container--title">{renderHtmlHost()}</p>
         <div className="mainTables__container--rows">
+          {findListOfTop5byHost}
           <ul>
-            {findListOfTop5byHost}
             {/* <li className="columnLeft">99</li>
             <li className="columnLeft">98</li>
             <li className="columnLeft">98</li>

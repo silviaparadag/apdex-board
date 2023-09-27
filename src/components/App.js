@@ -40,7 +40,7 @@ const App = () => {
   const eachTop4Hosts = data.renderHostList();
   /* */
 
-  // Por ahora lo estoy haciendo con datos troceados L32 y L34. Luego habría que hacerlo con TODOOOOOS los datos del JSON y donde haya más de 5, no mostrarlos!
+  // Por ahora lo estoy haciendo con datos troceados L32 y L34. Luego habría que hacerlo con TODOOOOOS los datos del JSON y donde haya más de 5, no mostrarlos! y ver qué hacer, OJOOOOOO, cuando uno host tiene menos de 4 apps...
 
   /*   
    `<li key={eachAppIndex} className="columnLeft">${eachApp.apdex} -  ${eachApp.name}</li> `
@@ -52,8 +52,20 @@ const App = () => {
       eachApp.hosts.includes(eachHost)
     );
     console.log(appsByHost);
+    console.log(eachHost);
     const list = appsByHost
-      .map((eachApp) => `${eachApp.apdex} -  ${eachApp.name} `)
+      .map((eachApp) => (
+        <div className={`mainTables__container ${toggleLayout}__container`}>
+          <p className="mainTables__container--title">{eachHost}</p>
+          <div className="mainTables__container--rows">
+            <ul>
+              <li className="columnLeft">
+                {eachApp.apdex} -{eachApp.name}
+              </li>
+            </ul>
+          </div>
+        </div>
+      ))
       .slice(0, 5);
     console.log(list);
     return list;
