@@ -22,51 +22,9 @@ const Main = ({
   // };
   return (
     <main className={`mainTables ${toggleLayout}`}>
-      <div className={`mainTables__container ${toggleLayout}__container`}>
-        <p className="mainTables__container--title">{renderHtmlHost()}</p>
-        <div className="mainTables__container--rows">
-          {findListOfTop5byHost}
-          <ul>
-            {/* <li className="columnLeft">99</li>
-            <li className="columnLeft">98</li>
-            <li className="columnLeft">98</li>
-            <li className="columnLeft">97</li> */}
-          </ul>
-          {/* <ul>
-            <li className="columnRight">
-              Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </li>
-            {/* <li className="columnRight">
-              Practical Metal Computer - Auer LLC, Inc
-            </li>
-            <li className="columnRight">
-              Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-            </li>
-            <li className="columnRight">
-              Practical Metal Computer - Auer LLC, Inc
-            </li>
-            <li className="columnRight">
-              Practical Metal Computer - Auer LLC, Inc
-            </li> 
-          </ul> */}
-        </div>
-      </div>
+      {findListOfTop5byHost}
       {/*
-      <div className="mainTables__container">
-        <p className="mainTables__container--title">
-          92116865-5462.conor.com NO VALE
-        </p>
-        <div className="mainTables__container--rows">
-          <ul>
-            <li className="spanColumnLeft">
-              100
-              <span className="spanColumnRight">
-                Awesome Wooden Sausages - Schaefer - Hegmann, Inc
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div> */}
+       */}
     </main>
   );
 };

@@ -30,14 +30,14 @@ const App = () => {
     setToggleLayout(newLayout);
   };
 
-  const top4Hosts = dataList.slice(0, 4);
-  //console.log(top4Hosts);
+  const top5Hosts = dataList.slice(0, 5);
+  //console.log(top5Hosts);
   const top25Apps = hostDataList.slice(0, 25);
   //console.log(top25Apps);
 
   /* esto lo usaba si lo traía desde JS
    */
-  const eachTop4Hosts = data.renderHostList();
+  const eachtop5Hosts = data.renderHostList();
   /* */
 
   // Por ahora lo estoy haciendo con datos troceados L32 y L34. Luego habría que hacerlo con TODOOOOOS los datos del JSON y donde haya más de 5, no mostrarlos! y ver qué hacer, OJOOOOOO, cuando uno host tiene menos de 4 apps...
@@ -47,7 +47,8 @@ const App = () => {
    <li key={eachAppIndex} className="columnLeft"></li>
    */
 
-  const findListOfTop5byHost = top4Hosts.map((eachHost) => {
+  /* */
+  const findListOfTop5byHost = top5Hosts.map((eachHost) => {
     const appsByHost = top25Apps.filter((eachApp) =>
       eachApp.hosts.includes(eachHost)
     );
@@ -55,21 +56,47 @@ const App = () => {
     console.log(eachHost);
     const list = appsByHost
       .map((eachApp) => (
-        <div className={`mainTables__container ${toggleLayout}__container`}>
-          <p className="mainTables__container--title">{eachHost}</p>
-          <div className="mainTables__container--rows">
-            <ul>
-              <li className="columnLeft">
-                {eachApp.apdex} -{eachApp.name}
-              </li>
-            </ul>
-          </div>
-        </div>
+        <li className="columnLeft">
+          {eachApp.apdex} -{eachApp.name}
+        </li>
       ))
       .slice(0, 5);
-    console.log(list);
-    return list;
+    return (
+      <div className={`mainTables__container ${toggleLayout}__container`}>
+        <p className="mainTables__container--title">{eachHost}</p>
+        <div className="mainTables__container--rows">
+          <ul> {list}</ul>
+        </div>
+      </div>
+    );
   });
+
+  /*
+  const appsByHost = top25Apps.reduce((acc, eachApp) => {
+    eachApp.hosts.map((host) => {
+      if (!acc[host]) {
+        acc[host] = [];
+      }
+      acc[host].push(eachApp);
+    });
+    return acc;
+  }, []);
+
+  const findListOfTop5byHost = appsByHost.map(([eachHost, apps]) => (
+    <div key={eachHost}>
+      <p className="mainTables__container--title">{eachHost}</p>
+      <div className="mainTables__container--rows">
+        <ul>
+          {apps.slice(0, 5).map((eachApp) => (
+            <li className="columnLeft" key={eachApp.id}>
+              {eachApp.apdex} - {eachApp.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  ));
+*/
   // ojo, revisar slice pq en el primer host, solo pinta 4 apps
 
   console.log(`Esta es la lista con React:  ${findListOfTop5byHost}`);
@@ -78,7 +105,7 @@ const App = () => {
   //como si la la respuesta, lo que necesito fuese la propiedad, la clave, no el valor.
 
   const renderHtmlHost = () => {
-    return top4Hosts.map((eachHost) => {
+    return top5Hosts.map((eachHost) => {
       console.log(eachHost);
       return (
         <div>
@@ -123,15 +150,15 @@ const App = () => {
       <Main
         toggleLayout={toggleLayout}
         findListOfTop5byHost={findListOfTop5byHost}
-        eachTop4Hosts={eachTop4Hosts}
-        top4Hosts={top4Hosts}
+        eachtop5Hosts={eachtop5Hosts}
+        top5Hosts={top5Hosts}
       />
       {/* <main className="main">
         {renderHtmlHost()} 
 
         <ul>
-          <li key={eachTop4Hosts} className="main__title">
-            {eachTop4Hosts}
+          <li key={eachtop5Hosts} className="main__title">
+            {eachtop5Hosts}
           </li>
         </ul>
       </main>
