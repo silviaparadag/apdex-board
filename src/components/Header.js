@@ -1,10 +1,6 @@
 import '../styles/layout/Header.scss';
 
 const Header = ({ handleToggleCheckbox }) => {
-  // const handleSubmit = (ev) => {
-  //   ev.preventDefault();
-  // };
-
   const handleCheck = () => {
     handleToggleCheckbox();
   };

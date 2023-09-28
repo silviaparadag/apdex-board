@@ -29,7 +29,7 @@ const App = () => {
   };
 
   const top5Hosts = dataList.slice(0, 5);
-  const top25Apps = hostDataList.slice(0, 25);
+  const top25Apps = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 25);
 
   // Por ahora lo estoy haciendo con datos troceados L32 y L34. Luego habría que hacerlo con TODOOOOOS los datos del JSON y donde haya más de 5, no mostrarlos! y ver qué hacer, OJOOOOOO, cuando uno host tiene menos de 4 apps...
 
