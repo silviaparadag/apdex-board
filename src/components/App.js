@@ -1,13 +1,18 @@
 import '../styles/App.scss';
+import '../styles/layout/Main.scss';
 import { useEffect, useState } from 'react';
 import Header from './Header';
-import Main from './Main';
+import AlertDialog from './Main';
 import data from '../js/hosts';
 
 const App = () => {
   const [hostDataList, setHostDataList] = useState([]);
   const [dataList, setDataList] = useState([]);
   const [toggleLayout, setToggleLayout] = useState('mainTablesList');
+  const [layoutModeText, setLayoutModeText] = useState(
+    'Show as an awesome grid'
+  );
+  const [alertMessage, setAlertMessage] = useState('false');
 
   /*  con API externa
   //import callToApi from '../services/api';
@@ -22,10 +27,19 @@ const App = () => {
     setDataList(data.newHostsObject);
   }, []);
 
+  const handleAlert = () => {
+    setAlertMessage(!alertMessage);
+  };
+
   const handleToggleCheckbox = () => {
     const newLayout =
       toggleLayout === 'mainTablesList' ? 'mainTablesGrid' : 'mainTablesList';
+    const newLayoutModeText =
+      layoutModeText === 'Show as an awesome grid'
+        ? 'Show as a list'
+        : 'Show as an awesome grid';
     setToggleLayout(newLayout);
+    setLayoutModeText(newLayoutModeText);
   };
 
   const top5Hosts = dataList.slice(0, 5);
@@ -61,11 +75,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header handleToggleCheckbox={handleToggleCheckbox} />
-      <Main
-        toggleLayout={toggleLayout}
-        findListOfTop5byHost={findListOfTop5byHost}
+      <Header
+        handleToggleCheckbox={handleToggleCheckbox}
+        layoutModeText={layoutModeText}
       />
+      <main className={`mainTables ${toggleLayout}`}>
+        {findListOfTop5byHost}
+        <AlertDialog handleAlert={handleAlert} />
+      </main>
     </div>
   );
 };

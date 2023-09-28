@@ -1,6 +1,6 @@
 import '../styles/layout/Header.scss';
 
-const Header = ({ handleToggleCheckbox }) => {
+const Header = ({ handleToggleCheckbox, layoutModeText }) => {
   const handleCheck = () => {
     handleToggleCheckbox();
   };
@@ -19,7 +19,7 @@ const Header = ({ handleToggleCheckbox }) => {
           onClick={handleCheck}
         />
         <label className="header__form--label" htmlFor="checkbox">
-          Show as a list
+          {layoutModeText}
         </label>
       </form>
     </header>
