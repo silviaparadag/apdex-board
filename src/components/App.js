@@ -2,70 +2,70 @@ import '../styles/App.scss';
 import { useEffect, useState } from 'react';
 import Header from './Header';
 import Main from './Main';
-import callToApi from '../services/api';
+import data from '../js/hosts';
 
 const App = () => {
-  const [hostDataList, setHostDataList] = useState([{}]);
+  const [hostDataList, setHostDataList] = useState([]);
+  const [dataList, setDataList] = useState([]);
   const [toggleLayout, setToggleLayout] = useState('mainTablesList');
 
+  /*  con API externa
+  //import callToApi from '../services/api';
   useEffect(() => {
     callToApi().then((data) => {
       setHostDataList(data);
     });
-  });
+  }); */
 
-  /*
-const handleToggleCheckbox = () => {
-    if (toggleLayout === 'mainTablesList') {
-      setToggleLayout('mainTablesGrid');
-    } else if (toggleLayout === 'mainTablesGrid') {
-      setToggleLayout('mainTablesList');
-    }
-  };
- */
+  useEffect(() => {
+    setHostDataList(data.getDataFromJson);
+    setDataList(data.newHostsObject);
+  }, []);
 
   const handleToggleCheckbox = () => {
     const newLayout =
       toggleLayout === 'mainTablesList' ? 'mainTablesGrid' : 'mainTablesList';
     setToggleLayout(newLayout);
   };
-  // const getNewOrderedHostList = () => {
-  //   const newHostList = [];
-  //   hostDataList.map((data) => {
-  //     return data.hosts.map((eachHost) => {
-  //       if (!newHostList.includes(eachHost)) {
-  //         newHostList.push(eachHost);
-  //       }
-  //       return newHostList;
-  //     });
-  //   });
-  // };
 
-  const top25 = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 25);
-  console.log(top25);
+  const top5Hosts = dataList.slice(0, 5);
+  const top25Apps = hostDataList.sort((a, b) => b.apdex - a.apdex).slice(0, 25);
 
-  const htmlhostDataList = top25.map((object, hostIndex) => (
-    <li key={top25.id} className="hostList__li">
-      <h2 className="hostList__li--apdex">{object.apdex}</h2>
-      <p className="hostList__li--app">{object.name}</p>
-      <ul>
-        <li className="hostList__li--hostName" key={hostIndex}>
-          Host: {object.hosts}
+  // Por ahora lo estoy haciendo con datos troceados L32 y L34. Luego habría que hacerlo con TODOOOOOS los datos del JSON y donde haya más de 5, no mostrarlos! y ver qué hacer, OJOOOOOO, cuando uno host tiene menos de 4 apps...
+
+  const findListOfTop5byHost = top5Hosts.map((eachHost) => {
+    const appsByHost = top25Apps.filter((eachApp) =>
+      eachApp.hosts.includes(eachHost)
+    );
+    console.log(appsByHost);
+    console.log(eachHost);
+    const list = appsByHost
+      .map((eachApp) => (
+        <li className="columnLeft">
+          {eachApp.apdex} -{eachApp.name}
         </li>
-      </ul>
-    </li>
-  ));
+      ))
+      .slice(0, 5);
+    return (
+      <div className={`mainTables__container ${toggleLayout}__container`}>
+        <p className="mainTables__container--title">{eachHost}</p>
+        <div className="mainTables__container--rows">
+          <ul> {list}</ul>
+        </div>
+      </div>
+    );
+  });
+  // ojo, revisar slice pq en el primer host, solo pinta 4 apps
+
+  console.log(`Esta es la lista con React:  ${findListOfTop5byHost}`);
 
   return (
     <div className="App">
       <Header handleToggleCheckbox={handleToggleCheckbox} />
-      <Main toggleLayout={toggleLayout} />
-      <main className="main">
-        <div>
-          <h3 className="main__title">Obtener datos</h3>
-        </div>
-        <ul className="hostList">{htmlhostDataList}</ul>
-      </main>
+      <Main
+        toggleLayout={toggleLayout}
+        findListOfTop5byHost={findListOfTop5byHost}
+      />
     </div>
   );
 };
